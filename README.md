@@ -2,7 +2,7 @@
 
 CountryFacts is an iOS application that combines data from a public GraphQL API with AI-powered insights to help users explore and learn about countries around the world.
 
-## 📡 API Selection
+## API Selection
 
 This project uses the following APIs:
 
@@ -20,7 +20,7 @@ This project uses the following APIs:
   - Free-tier available with usage quotas
   - Used for generating fun facts and answering questions about countries
 
-## 🎯 Features
+## Features
 
 ### Core Features
 - **Country List Display** - Browse all countries with flag emojis and continent information
@@ -40,7 +40,7 @@ This project uses the following APIs:
 - **Loading States** - Skeleton screens and progress indicators
 - **Error Handling** - User-friendly error messages with retry functionality
 
-## 🏗️ Architecture
+## Architecture
 
 This project follows **MVVM (Model-View-ViewModel)** architecture with clear separation of concerns:
 
@@ -73,18 +73,18 @@ This project follows **MVVM (Model-View-ViewModel)** architecture with clear sep
 ## 📋 Requirements
 
 - iOS 16.0+
-- Xcode 15.0+
+- Xcode 16.0+
 - Swift 6.2+
 - Apollo iOS SDK 1.25.2+
 - Gemini API key (free tier available)
 
-## 🚀 Setup Instructions
+## Setup Instructions
 
 ### 1. Clone the Repository
 
 ```bash
-git clone <repository-url>
-cd CountryFacts
+git clone https://github.com/ronstorm/country-facts.git
+cd country-facts
 ```
 
 ### 2. Install Apollo iOS SDK
@@ -184,7 +184,7 @@ You need a Gemini API key from [Google AI Studio](https://ai.google.dev/).
 2. Select your target device or simulator
 3. Build and run (⌘ + R)
 
-## 🧪 Testing
+## Testing
 
 ### Running Tests
 
@@ -216,18 +216,19 @@ The project includes comprehensive unit tests for:
 - **URLProtocol Mocking** - Custom `MockURLSession` for network testing
 - **Test Helpers** - Reusable utilities in `TestHelpers.swift`
 
-## 🔄 CI/CD
+## CI/CD
 
 This project includes a GitHub Actions workflow for automated build and testing:
 
 - **Workflow file:** `.github/workflows/ci.yml`
 - **Triggers:** Runs on push and pull requests to `main` and `develop` branches
+- **Environment:** macOS 15 with Xcode 16.0
 - **Actions:**
   - Builds the iOS project
   - Runs all unit tests
   - Generates code coverage reports
 
-## ⚠️ Known Limitations & Tradeoffs
+## Known Limitations & Tradeoffs
 
 ### API Limitations
 
@@ -272,8 +273,3 @@ This project includes a GitHub Actions workflow for automated build and testing:
   - Handles ~250 countries efficiently
   - Search filtering happens in-memory
   - No pagination needed for current data size
-
-## 📝 License
-
-© 2025 Coding With Amit. All rights reserved.
-
