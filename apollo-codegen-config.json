@@ -1,0 +1,29 @@
+{
+  "schemaNamespace" : "CountryFactsSchema",
+  "input" : {
+    "operationSearchPaths" : [
+      "CountryFacts/Models/GraphQL/**/*.graphql"
+    ],
+    "schemaSearchPaths" : [
+      "CountryFacts/Models/GraphQL/**/*.json"
+    ]
+  },
+  "output" : {
+    "testMocks" : {
+      "none" : {
+      }
+    },
+    "schemaTypes" : {
+      "path" : "CountryFacts/Models/GraphQL",
+      "moduleType" : {
+        "embeddedInTarget" : {
+          "name" : "CountryFacts"
+        }
+      }
+    },
+    "operations" : {
+      "inSchemaModule" : {
+      }
+    }
+  }
+}

@@ -1,0 +1,19 @@
+query GetCountryDetail($code: ID!) {
+  country(code: $code) {
+    code
+    name
+    native
+    emoji
+    continent {
+      code
+      name
+    }
+    capital
+    currency
+    languages {
+      code
+      name
+    }
+  }
+}
+

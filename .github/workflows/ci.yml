@@ -1,0 +1,68 @@
+name: Build and Test
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main, develop ]
+
+jobs:
+  build-and-test:
+    name: Build and Test iOS
+    runs-on: macos-14
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        
+      - name: Select Xcode version
+        run: |
+          if [ -d "/Applications/Xcode_15.4.app" ]; then
+            sudo xcode-select -switch /Applications/Xcode_15.4.app/Contents/Developer
+          elif [ -d "/Applications/Xcode_15.0.app" ]; then
+            sudo xcode-select -switch /Applications/Xcode_15.0.app/Contents/Developer
+          else
+            sudo xcode-select -switch /Applications/Xcode.app/Contents/Developer
+          fi
+        
+      - name: Show Xcode version
+        run: xcodebuild -version
+        
+      - name: Show Swift version
+        run: swift --version
+        
+      - name: List available simulators
+        run: xcrun simctl list devices available | grep iPhone
+        
+      - name: Build project
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: |
+          xcodebuild clean build \
+            -scheme CountryFacts \
+            -destination 'platform=iOS Simulator,name=iPhone 15,OS=latest' \
+            -configuration Debug \
+            CODE_SIGN_IDENTITY="" \
+            CODE_SIGNING_REQUIRED=NO \
+            CODE_SIGNING_ALLOWED=NO \
+            INFOPLIST_KEY_GEMINI_API_KEY="$GEMINI_API_KEY"
+            
+      - name: Run tests
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: |
+          xcodebuild test \
+            -scheme CountryFacts \
+            -destination 'platform=iOS Simulator,name=iPhone 15,OS=latest' \
+            -configuration Debug \
+            CODE_SIGN_IDENTITY="" \
+            CODE_SIGNING_REQUIRED=NO \
+            CODE_SIGNING_ALLOWED=NO \
+            -enableCodeCoverage YES \
+            INFOPLIST_KEY_GEMINI_API_KEY="$GEMINI_API_KEY"
+            
+      - name: Show test results summary
+        if: always()
+        run: |
+          echo "Tests completed. Check logs above for detailed results."
+
