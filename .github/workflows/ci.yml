@@ -34,10 +34,7 @@ jobs:
             -scheme CountryFacts \
             -sdk iphonesimulator \
             -configuration Debug \
-            CODE_SIGN_IDENTITY="" \
-            CODE_SIGNING_REQUIRED=NO \
             CODE_SIGNING_ALLOWED=NO \
-            INFOPLIST_KEY_GEMINI_API_KEY="$GEMINI_API_KEY"
       
       - name: Test
         env:
@@ -46,10 +43,5 @@ jobs:
           xcodebuild test \
             -scheme CountryFacts \
             -destination 'platform=iOS Simulator,name=iPhone 17' \
-            -configuration Debug \
-            CODE_SIGN_IDENTITY="" \
-            CODE_SIGNING_REQUIRED=NO \
-            CODE_SIGNING_ALLOWED=NO \
             -enableCodeCoverage YES \
-            INFOPLIST_KEY_GEMINI_API_KEY="$GEMINI_API_KEY"
-
+            CODE_SIGNING_ALLOWED=NO \
