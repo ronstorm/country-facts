@@ -35,7 +35,7 @@ jobs:
         run: |
           xcodebuild clean build \
             -scheme CountryFacts \
-            -destination 'platform=iOS Simulator,name=iPhone 16 Pro,OS=18.5' \
+            -destination 'generic/platform=iOS' \
             -configuration Debug \
             CODE_SIGN_IDENTITY="" \
             CODE_SIGNING_REQUIRED=NO \
