@@ -19,6 +19,12 @@ jobs:
         uses: maxim-lobanov/setup-xcode@v1
         with:
           xcode-version: latest-stable
+          
+      - name: Create Config.xcconfig
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: |
+          echo "GEMINI_API_KEY = $GEMINI_API_KEY" > Config.xcconfig
         
       - name: Build
         env:
